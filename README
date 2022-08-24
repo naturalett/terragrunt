@@ -1,0 +1,28 @@
+export BUCKET="devops-workshop-$(uuidgen | tr "[:upper:]" "[:lower:]")"
+
+aws s3api create-bucket --bucket "${BUCKET}"
+
+tg init
+cd infra/vpc && tg apply
+cd infra/eks && tg apply
+cd infra/efs && tg apply
+cd infra/nodeGroups/managed-node-group/internal-services && tg apply
+cd infra/metrics-server && tg apply
+
+
+cd services/ingress-nginx && tg apply
+
+Add the following to your /etc/hosts:
+echo "$(dig +short <NLB DNS>) anthonycornell.com."
+
+navigate:
+https://anthonycornell.com/apple
+https://anthonycornell.com/banana
+
+curl  http://anthonycornell.com/apple
+curl  http://anthonycornell.com/banana
+
+
+tg init
+
+tg terragrunt-config infra/vpc apply

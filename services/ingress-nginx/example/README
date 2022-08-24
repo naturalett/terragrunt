@@ -1,0 +1,13 @@
+kubectl apply -f apply.yaml
+kubectl apply -f banana.yaml
+kubectl apply -f example-ingress.yaml
+
+Add the following to your /etc/hosts:
+echo "$(dig +short <NLB DNS>) anthonycornell.com."
+
+navigate:
+https://anthonycornell.com/apple
+https://anthonycornell.com/banana
+
+curl  http://anthonycornell.com/apple
+curl  http://anthonycornell.com/banana
