@@ -1,0 +1,9 @@
+variable "replicaCount" { default = "1" }
+variable "clusterName" { default = "" }
+variable "cluster_oidc_issuer_url" { default = "" }
+variable "oidc_provider_arn" { default = "" }
+variable "alb_policy_name" { default = "" }
+variable "account_id" { default = "" }
+variable "vpc_id" { default = "" }
+variable "oidc_provider" { default = "" }
+variable "aws_region" { default = "" }

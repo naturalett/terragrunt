@@ -1,0 +1,10 @@
+variable "replicaCount" { default = "" }
+variable "node_security_group_id" { default = "" }
+variable "private_subnets" { default = [] }
+variable "cidr_block" { default = [] }
+variable "efs_name" { default = "" }
+variable "cluster_oidc_issuer_url" { default = "" }
+variable "oidc_provider_arn" { default = "" }
+variable "account_id" { default = "" }
+variable "efs_policy_name" { default = "" }
+variable "vpc_id" { default = "" }
