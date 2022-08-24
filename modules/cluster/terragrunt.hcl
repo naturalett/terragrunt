@@ -9,9 +9,9 @@ terraform {
     commands = ["apply"]
     env_vars = {
       CLUSTER_NAME = local.env_vars.locals.cluster_full_name
-      region_code = local.env_vars.locals.aws_region
+      region_code  = local.env_vars.locals.aws_region
       cluster_name = local.env_vars.locals.cluster_name
-      account_id = local.env_vars.locals.account_id
+      account_id   = local.env_vars.locals.account_id
     }
   }
 }

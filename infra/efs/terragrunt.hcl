@@ -8,7 +8,7 @@ terraform {
 }
 
 locals {
-  env_vars = read_terragrunt_config(get_path_to_repo_root())
+  env_vars   = read_terragrunt_config(get_path_to_repo_root())
   infra_vars = read_terragrunt_config("${get_path_to_repo_root()}/infra/terragrunt.hcl")
 }
 
@@ -21,11 +21,11 @@ dependency "vpc" {
 }
 
 inputs = {
-  efs_policy_name = local.infra_vars.locals.efs_policy_name
-  efs_name        = local.infra_vars.locals.efs_name
-  account_id      = local.env_vars.locals.account_id
-  private_subnets = dependency.vpc.outputs.private_subnets
-  vpc_id = dependency.vpc.outputs.vpc_id
+  efs_policy_name         = local.infra_vars.locals.efs_policy_name
+  efs_name                = local.infra_vars.locals.efs_name
+  account_id              = local.env_vars.locals.account_id
+  private_subnets         = dependency.vpc.outputs.private_subnets
+  vpc_id                  = dependency.vpc.outputs.vpc_id
   cluster_oidc_issuer_url = dependency.eks.outputs.cluster_oidc_issuer_url
   oidc_provider_arn       = dependency.eks.outputs.oidc_provider_arn
   cidr_block              = dependency.vpc.outputs.vpc_cidr_block

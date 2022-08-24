@@ -12,18 +12,18 @@ dependency "eks" {
 }
 
 locals {
-  env_vars = read_terragrunt_config(get_path_to_repo_root())
+  env_vars   = read_terragrunt_config(get_path_to_repo_root())
   infra_vars = read_terragrunt_config("${get_path_to_repo_root()}/infra/terragrunt.hcl")
 }
 
 inputs = {
-  vpc_id = dependency.vpc.outputs.vpc_id
-  clusterName = local.env_vars.locals.cluster_name
-  aws_region = local.env_vars.locals.aws_region
-  account_id      = local.env_vars.locals.account_id
-  alb_policy_name = local.infra_vars.locals.alb_policy_name
+  vpc_id                  = dependency.vpc.outputs.vpc_id
+  clusterName             = local.env_vars.locals.cluster_name
+  aws_region              = local.env_vars.locals.aws_region
+  account_id              = local.env_vars.locals.account_id
+  alb_policy_name         = local.infra_vars.locals.alb_policy_name
   cluster_oidc_issuer_url = dependency.eks.outputs.cluster_oidc_issuer_url
-  oidc_provider       = dependency.eks.outputs.oidc_provider
+  oidc_provider           = dependency.eks.outputs.oidc_provider
   oidc_provider_arn       = dependency.eks.outputs.oidc_provider_arn
 }
 

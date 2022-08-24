@@ -18,32 +18,32 @@ inputs = {
   enable_vpn_gateway = true
 
   private_subnet_tags = {
-    Tier = "Private"
-    "kubernetes.io/role/internal-elb" = 1
+    Tier                                                          = "Private"
+    "kubernetes.io/role/internal-elb"                             = 1
     "kubernetes.io/cluster/${local.env_vars.locals.cluster_name}" = "owned"
   }
 
-  public_subnet_tags	= {
-    "kubernetes.io/role/elb" = 1
+  public_subnet_tags = {
+    "kubernetes.io/role/elb"                                      = 1
     "kubernetes.io/cluster/${local.env_vars.locals.cluster_name}" = "owned"
   }
 
   tags = {
-    Terraform = "true"
+    Terraform   = "true"
     Environment = "dev"
   }
 }
 
 remote_state {
   generate = {
-    path = "backend.tf"
+    path      = "backend.tf"
     if_exists = "overwrite_terragrunt"
   }
   backend = local.env_vars.remote_state.backend
   config = merge(
     local.env_vars.remote_state.config,
     {
-      key =  "${local.env_vars.locals.cluster_full_name}/${basename(get_repo_root())}/${get_path_from_repo_root()}/terraform.tfstate"
+      key = "${local.env_vars.locals.cluster_full_name}/${basename(get_repo_root())}/${get_path_from_repo_root()}/terraform.tfstate"
     },
   )
 }

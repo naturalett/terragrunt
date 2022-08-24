@@ -21,7 +21,7 @@ dependency "efs" {
 inputs = {
   name         = "internal-services"
   cluster_name = local.env_vars.locals.cluster_name
-  
+
   desired_size = 1
   max_size     = 3
   min_size     = 1
@@ -33,11 +33,11 @@ inputs = {
   cluster_primary_security_group_id = dependency.eks.outputs.cluster_primary_security_group_id
   cluster_security_group_id         = dependency.eks.outputs.cluster_security_group_id
   # vpc_security_group_ids            = [dependency.eks.outputs.node_security_group_id]
-  node_role_arn                     = dependency.eks.outputs.cluster_iam_role_arn
-  subnet_ids                        = dependency.vpc.outputs.private_subnets
-  cluster_endpoint                  = dependency.eks.outputs.cluster_endpoint
-  cluster_auth_base64               = dependency.eks.outputs.cluster_certificate_authority_data
-  iam_role_additional_policies      = [dependency.efs.outputs.aws_iam_policy_arn]
+  node_role_arn                = dependency.eks.outputs.cluster_iam_role_arn
+  subnet_ids                   = dependency.vpc.outputs.private_subnets
+  cluster_endpoint             = dependency.eks.outputs.cluster_endpoint
+  cluster_auth_base64          = dependency.eks.outputs.cluster_certificate_authority_data
+  iam_role_additional_policies = [dependency.efs.outputs.aws_iam_policy_arn]
 
   labels = {
     Environment   = "test"

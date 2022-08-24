@@ -1,5 +1,5 @@
 Add the following to your /etc/hosts:
-echo "$(dig +short a31c07eabe7a046509453451fef6f64c-20ffca905b002bcc.elb.us-east-1.amazonaws.com) test.devops-workshop.com."
+echo "$(dig +short <NLB DNS>) test.devops-workshop.com."
 
 navigate:
 http://test.devops-workshop.com

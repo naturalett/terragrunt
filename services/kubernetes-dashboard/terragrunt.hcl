@@ -8,7 +8,7 @@ locals {
 
 inputs = {
   ingress_enabled = true
-  group_name = "backend"
+  group_name      = "backend"
 }
 remote_state {
   generate = {
