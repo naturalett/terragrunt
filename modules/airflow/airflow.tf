@@ -15,11 +15,6 @@ ingress:
   web:
     host: "test.devops-workshop.com"
     ingressClassName: "nginx"
-postgresql:
-  enabled: true
-  persistence:
-    enabled: true
-    storageClass: "${var.storage_class}"
 dags:
   persistence:
     accessMode: "ReadWriteMany"

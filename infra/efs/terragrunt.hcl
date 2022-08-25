@@ -29,6 +29,7 @@ inputs = {
   cluster_oidc_issuer_url = dependency.eks.outputs.cluster_oidc_issuer_url
   oidc_provider_arn       = dependency.eks.outputs.oidc_provider_arn
   cidr_block              = dependency.vpc.outputs.vpc_cidr_block
+  oidc_provider           = dependency.eks.outputs.oidc_provider
   node_security_group_id  = dependency.eks.outputs.cluster_primary_security_group_id
 }
 

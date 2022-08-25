@@ -1,2 +1,2 @@
-storage_class = "aws-efs-csi-driver-storage"
+storage_class = "efs-sc"
 namespace = "kube-system"

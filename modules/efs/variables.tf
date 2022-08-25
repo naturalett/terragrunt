@@ -8,3 +8,4 @@ variable "oidc_provider_arn" { default = "" }
 variable "account_id" { default = "" }
 variable "efs_policy_name" { default = "" }
 variable "vpc_id" { default = "" }
+variable "oidc_provider" { default = "" }
