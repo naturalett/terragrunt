@@ -5,7 +5,7 @@ locals {
   bucket            = "${get_env("BUCKET")}"
   cluster_name      = "devops"
   cluster_version   = "1.22"
-  account_id        = "445521015129"
+  account_id        = "${get_env("ACCOUNT_ID")}"
   profile           = "devops"
   namespaces        = ["workshop"]
   cidr              = "10.106.0.0/16"
