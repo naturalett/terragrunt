@@ -1,17 +1,38 @@
+# Initialize your workstation
 export BUCKET="devops-workshop-$(uuidgen | tr "[:upper:]" "[:lower:]")"
 export ACCOUNT_ID=""
-
 aws s3api create-bucket --bucket "${BUCKET}"
 
-tg init
-cd infra/vpc && tg apply
-cd infra/eks && tg apply
-cd infra/efs && tg apply
-cd infra/nodeGroups/managed-node-group/internal-services && tg apply
-cd infra/metrics-server && tg apply
+# Provision a VPC
+terragrunt init
+cd infra/vpc
+terragrunt apply
 
+# Provision an EKS
+terragrunt init
+cd infra/eks
+terragrunt apply
 
-cd services/ingress-nginx && tg apply
+# Provision an EFS
+terragrunt init
+cd infra/efs
+terragrunt apply
+
+# Provision a nodeGroup
+terragrunt init
+cd infra/nodeGroups/managed-node-group/internal-services
+terragrunt apply
+
+# Provision a metrics-server
+terragrunt init
+cd infra/metrics-server
+terragrunt apply
+
+# Provision an ingress-nginx
+terragrunt init
+cd services/ingress-nginx
+terragrunt apply
+
 
 Add the following to your /etc/hosts:
 echo "$(dig +short <NLB DNS>) anthonycornell.com."
