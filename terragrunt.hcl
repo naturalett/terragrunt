@@ -4,8 +4,10 @@ locals {
   aws_region        = "us-east-1"
   bucket            = "${get_env("BUCKET")}"
   cluster_name      = "devops"
-  cluster_version   = "1.22"
+  cluster_version   = "1.27"
   account_id        = "${get_env("ACCOUNT_ID")}"
+  domain_name       = "top10devops"
+  organization      = "naturalett"
   profile           = "devops"
   namespaces        = ["workshop"]
   cidr              = "10.106.0.0/16"
@@ -51,7 +53,7 @@ generate "backend" {
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
 terraform {
-  required_version = "~> 1.2.6"
+  required_version = "~> 1.3.3"
   backend "s3" {
     bucket         = "${local.bucket}"
     key            = "${local.cluster_full_name}/${basename(get_repo_root())}/terraform.tfstate"

@@ -7,7 +7,7 @@ locals {
 }
 
 dependency "vpc" {
-  config_path = "${get_path_to_repo_root()}/infra/vpc"
+  config_path = find_in_parent_folders("vpc")
 }
 
 inputs = {

@@ -14,6 +14,7 @@ dependency "vpc" {
   config_path = "${get_path_to_repo_root()}/infra/vpc"
 }
 
+# EFS output: https://github.com/kabisa/terraform-aws-eks-alb-ingress/blob/master/README.md
 dependency "efs" {
   config_path = "${get_path_to_repo_root()}/infra/efs"
 }
