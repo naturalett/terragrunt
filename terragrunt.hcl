@@ -53,7 +53,6 @@ generate "backend" {
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
 terraform {
-  required_version = "~> 1.3.3"
   backend "s3" {
     bucket         = "${local.bucket}"
     key            = "${local.cluster_full_name}/${basename(get_repo_root())}/terraform.tfstate"

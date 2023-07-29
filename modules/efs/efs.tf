@@ -117,8 +117,11 @@ resource "aws_efs_file_system" "efsVolume" {
   }
 }
 
-data "aws_subnet_ids" "destination" {
-  vpc_id = var.vpc_id
+data "aws_subnets" "destination" {
+  filter {
+    name   = "vpc-id"
+    values = [var.vpc_id]
+  }
   tags = {
     Tier = "Private"
   }
@@ -126,7 +129,7 @@ data "aws_subnet_ids" "destination" {
 
 resource "aws_efs_mount_target" "efsMounts" {
   depends_on = [aws_efs_file_system.efsVolume]
-  for_each        = data.aws_subnet_ids.destination.ids
+  for_each        = toset(data.aws_subnets.destination.ids)
   file_system_id  = aws_efs_file_system.efsVolume.id
   subnet_id       = each.value
   security_groups = [var.node_security_group_id]
