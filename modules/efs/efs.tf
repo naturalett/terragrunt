@@ -80,7 +80,7 @@ resource "helm_release" "aws-efs-csi-driver" {
   namespace  = "kube-system"
   repository = "https://kubernetes-sigs.github.io/aws-efs-csi-driver/"
   chart      = "aws-efs-csi-driver"
-  version    = "2.2.6"
+  version    = "2.4.7"
   wait       = "false"
   values = [<<EOF
 replicaCount: ${var.replicaCount}

@@ -1,6 +1,8 @@
 locals {
   cluster_full_name = "devops-us-east-1.k8s.local"
-  kube_config_path  = pathexpand("./${local.cluster_full_name}.config")
+  kube_config  = pathexpand("~/.kube/config")
+  local_kube_config_path = pathexpand("./${local.cluster_full_name}.config")
+  kube_config_path    = fileexists(local.kube_config) ? local.kube_config : local.local_kube_config_path
   aws_region        = "us-east-1"
   bucket            = "${get_env("BUCKET")}"
   cluster_name      = "devops"
@@ -28,12 +30,23 @@ generate "provider" {
 provider "aws" {
   region = "${local.aws_region}"
 }
+
 provider "kubernetes" {
   config_path = "${local.kube_config_path}"
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args = ["eks", "get-token", "--cluster-name", "${var.local.cluster_name}"]
+      command = "aws"
+    }
 }
 provider "helm" {
   kubernetes {
     config_path = "${local.kube_config_path}"
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args = ["eks", "get-token", "--cluster-name", "${var.local.cluster_name}"]
+      command = "aws"
+    }
   }
 }
 EOF

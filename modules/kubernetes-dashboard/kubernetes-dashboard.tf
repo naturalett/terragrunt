@@ -10,12 +10,11 @@ extraArgs:
   - --enable-skip-login
   - --enable-insecure-login
 service:
-  type: NodePort
-  externalPort: 80
+  type: ClusterIP
 ingress:
   enabled: ${var.ingress_enabled}
   annotations:
-    kubernetes.io/ingress.class: alb
+    kubernetes.io/ingress.class: nginx
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/group.name: ${var.group_name}
 EOF
