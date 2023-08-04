@@ -30,7 +30,6 @@ generate "provider" {
 provider "aws" {
   region = "${local.aws_region}"
 }
-
 provider "kubernetes" {
   config_path = "${local.kube_config_path}"
     exec {

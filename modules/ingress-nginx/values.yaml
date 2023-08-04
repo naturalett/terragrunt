@@ -1,6 +1,8 @@
 rbac:
   create: true
 controller:
+  labels:
+    nginx: internet-facing
   metrics:
     enabled: true
   service:
@@ -9,6 +11,7 @@ controller:
       https: http
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
       service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
       service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
       service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: '3600'

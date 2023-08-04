@@ -4,5 +4,5 @@ output "efsVolume_id" {
 }
 
 output "aws_iam_policy_arn" {
-  value = aws_iam_policy.efs-policy.arn
+  value = "${aws_iam_policy.efs-policy.arn}"
 }

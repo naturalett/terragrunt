@@ -10,6 +10,7 @@ inputs = {
   ingress_enabled = true
   group_name      = "backend"
 }
+
 remote_state {
   generate = {
     path      = "backend.tf"

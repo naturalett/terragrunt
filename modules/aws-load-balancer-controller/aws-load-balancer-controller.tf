@@ -93,7 +93,7 @@ resource "helm_release" "aws-load-balancer-controller" {
   namespace  = "kube-system"
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
-  version    = "1.4.4"
+  version    = "1.5.5"
   wait       = "false"
   values = [<<EOF
 clusterName: ${var.clusterName}
