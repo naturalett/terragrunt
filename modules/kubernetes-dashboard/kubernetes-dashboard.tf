@@ -119,11 +119,10 @@ serviceAccount:
   name: "kubernetes-dashboard"
 ingress:
   annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header Accept-Encoding "";
-      sub_filter '<base href="/">' '<base href="/dashboard/">';
-      sub_filter_once on;
-    nginx.ingress.kubernetes.io/rewrite-target: "/$2"
+      rewrite ^(/dashboard)$ $1/ redirect;
   hosts: ["${data.kubernetes_service.ingress_nginx.status.0.load_balancer.0.ingress.0.hostname}"]
   tls: []
   customPaths:
