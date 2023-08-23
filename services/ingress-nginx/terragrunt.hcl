@@ -1,5 +1,4 @@
 # https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/
-# https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/
 # https://easoncao.com/eks-best-practice-load-balancing-3-en/#fn:aws-lb-controller-ingressgroup
 # https://github.com/kubernetes/ingress-nginx/blob/nginx-0.30.0/docs/user-guide/nginx-configuration/annotations.md
 terraform {

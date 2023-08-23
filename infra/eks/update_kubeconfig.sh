@@ -1,0 +1,1 @@
+aws eks update-kubeconfig --region $region_code --name $cluster_name

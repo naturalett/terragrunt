@@ -4,7 +4,7 @@ terraform {
   source = "tfr:///terraform-aws-modules/eks/aws?version=19.14.0"
   after_hook "terragrunt-read-config" {
     commands = ["apply"]
-    execute  = ["bash", "./script.sh"]
+    execute  = ["bash", "./update_kubeconfig.sh"]
   }
   extra_arguments "set_env" {
     commands = ["apply"]
