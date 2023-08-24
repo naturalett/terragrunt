@@ -5,11 +5,17 @@
 #   name = "AmazonEKS_EFS_CSI_Driver_Policy"
 # }
 
+resource "random_string" "random" {
+  length           = 4
+  special          = false
+  lower  = true
+}
+
 resource "aws_iam_policy" "efs-policy" {
   # count       = data.aws_iam_policy.efs-policy.name != null ? 0 : 1
-  name        = var.efs_policy_name
+  name        = "${var.efs_policy_name}-${random_string.random.id}"
   path        = "/"
-  description = var.efs_policy_name
+  description = "${var.efs_policy_name}-${random_string.random.id}"
   policy = file("./iam-policy-efs.json")
 }
 
@@ -26,7 +32,7 @@ resource "aws_iam_policy" "efs-policy" {
 # }
 
 resource "aws_iam_role" "AmazonEKS_EFS_CSI_DriverRole" {
-  name = "AmazonEKS_EFS_CSI_DriverRole"
+  name = "AmazonEKS_EFS_CSI_DriverRole-${random_string.random.id}"
   assume_role_policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -67,7 +73,7 @@ resource "kubernetes_service_account" "efs" {
       "app.kubernetes.io/component" = "controller"
     }
     annotations = {
-      "eks.amazonaws.com/role-arn" = "arn:aws:iam::${var.account_id}:role/AmazonEKS_EFS_CSI_DriverRole"
+      "eks.amazonaws.com/role-arn" = "arn:aws:iam::${var.account_id}:role/AmazonEKS_EFS_CSI_DriverRole-${random_string.random.id}"
       # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html
       "eks.amazonaws.com/sts-regional-endpoints" = "true"
     }
