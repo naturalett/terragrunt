@@ -6,6 +6,10 @@ locals {
   env_vars = read_terragrunt_config(get_path_to_repo_root())
 }
 
+dependency "eks" {
+  config_path = find_in_parent_folders("03-eks")
+}
+
 remote_state {
   generate = {
     path      = "backend.tf"

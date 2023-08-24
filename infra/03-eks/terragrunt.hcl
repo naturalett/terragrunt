@@ -7,7 +7,7 @@ locals {
 }
 
 dependency "vpc" {
-  config_path = find_in_parent_folders("vpc")
+  config_path = find_in_parent_folders("01-vpc")
 }
 
 inputs = {
@@ -15,6 +15,16 @@ inputs = {
   cluster_name    = local.env_vars.locals.cluster_name
   vpc_id          = dependency.vpc.outputs.vpc_id
   subnet_ids      = dependency.vpc.outputs.private_subnets
+  cluster_security_group_additional_rules = {
+    ingress_cluster_to_node_all_traffic = {
+      description = "Internal VPC Access"
+      protocol = "-1"
+      from_port = 0
+      to_port = 0
+      type = "ingress"
+      cidr_blocks = [local.env_vars.locals.cidr]
+    }
+  }
 }
 
 remote_state {

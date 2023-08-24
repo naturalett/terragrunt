@@ -20,6 +20,10 @@ dependency "vpc" {
   config_path = "${get_path_to_repo_root()}/infra/01-vpc"
 }
 
+dependency "node-groups" {
+  config_path = "${get_path_to_repo_root()}/infra/04-nodeGroups/managed-node-group/internal-services"
+}
+
 inputs = {
   efs_policy_name         = local.infra_vars.locals.efs_policy_name
   efs_name                = local.infra_vars.locals.efs_name
