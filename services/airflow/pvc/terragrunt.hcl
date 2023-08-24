@@ -8,7 +8,7 @@ terraform {
 }
 
 dependency "efs" {
-  config_path = "${get_path_to_repo_root()}/infra/efs"
+  config_path = "${get_path_to_repo_root()}/infra/02-efs"
 }
 
 locals {
