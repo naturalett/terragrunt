@@ -1,3 +1,4 @@
+# https://github.com/kubernetes/ingress-nginx/blob/helm-chart-4.2.3/charts/ingress-nginx/Chart.yaml
 resource "helm_release" "ingress-nginx" {
   name = "ingress-nginx"
   repository = "https://kubernetes.github.io/ingress-nginx"

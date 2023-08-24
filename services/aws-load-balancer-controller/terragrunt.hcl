@@ -4,11 +4,11 @@ terraform {
 }
 
 dependency "vpc" {
-  config_path = "${get_path_to_repo_root()}/infra/vpc"
+  config_path = "${get_path_to_repo_root()}/infra/01-vpc"
 }
 
 dependency "eks" {
-  config_path = "${get_path_to_repo_root()}/infra/eks"
+  config_path = "${get_path_to_repo_root()}/infra/03-eks"
 }
 
 locals {

@@ -1,22 +1,24 @@
 terraform {
-  source = "${dirname(get_repo_root())}/${basename(get_repo_root())}/modules/pvc/"
+  source = "${get_path_to_repo_root()}/modules/docker-registry/"
   before_hook "interpolation_hook_1" {
     commands     = ["apply", "plan"]
-    execute      = ["cp", "${dirname(get_repo_root())}/${basename(get_repo_root())}/modules/pvc/variables.tf", "."]
+    execute      = ["cp", "${dirname(get_repo_root())}/${basename(get_repo_root())}/modules/docker-registry/variables.tf", "."]
     run_on_error = false
   }
-}
-
-dependency "efs" {
-  config_path = "${get_path_to_repo_root()}/infra/02-efs"
 }
 
 locals {
   env_vars = read_terragrunt_config(get_path_to_repo_root())
 }
 
+dependency "ingress" {
+  config_path = "${get_path_to_repo_root()}/infra/ingress-nginx"
+}
+
 inputs = {
-  efsVolume_id = dependency.efs.outputs.efsVolume_id
+  ingress_class = dependency.efs.outputs.ingress_class
+  domain_name   = local.env_vars.locals.domain_name
+  organization  = local.env_vars.locals.organization
 }
 
 remote_state {

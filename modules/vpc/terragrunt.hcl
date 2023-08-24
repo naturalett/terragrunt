@@ -1,3 +1,3 @@
 terraform {
-  source = "tfr:///terraform-aws-modules/vpc/aws?version=3.14.2"
+  source = "tfr:///terraform-aws-modules/vpc/aws?version=5.0.0"
 }
