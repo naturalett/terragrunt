@@ -7,16 +7,16 @@ locals {
 }
 
 dependency "eks" {
-  config_path = "${get_path_to_repo_root()}/infra/eks"
+  config_path = "${get_path_to_repo_root()}/infra/03-eks"
 }
 
 dependency "vpc" {
-  config_path = "${get_path_to_repo_root()}/infra/vpc"
+  config_path = "${get_path_to_repo_root()}/infra/01-vpc"
 }
 
 # EFS output: https://github.com/kabisa/terraform-aws-eks-alb-ingress/blob/master/README.md
 dependency "efs" {
-  config_path = "${get_path_to_repo_root()}/infra/efs"
+  config_path = "${get_path_to_repo_root()}/infra/02-efs"
 }
 
 inputs = {
